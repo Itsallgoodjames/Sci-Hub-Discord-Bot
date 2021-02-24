@@ -40,4 +40,4 @@ async def on_message(message):
         await message.channel.send(SciHubURL)
         
         
-client.run('ODEzNDA1NjE2MDM0Njc2Nzc2.YDO1Aw.itt01sez-mGNuKcMkbvOYrYlukc')
+client.run('[INSERT API KEY HERE]')
