@@ -1,14 +1,17 @@
 #Sci-Hub Discord Bot V1.0
-
 import discord
 from urllib.parse import urlparse
 import urllib.request
 
 client = discord.Client()
 
+scihub = 'https://scihubtw.tw/'
+
 @client.event
 async def on_ready():
     print('Logged on as {0.user}'.format(client))
+    await client.change_presence(activity=discord.Game(name='Sci-Hub: removing barriers in the way of science'))      
+
 
 @client.event
 async def on_message(message):
@@ -25,7 +28,7 @@ async def on_message(message):
         URLpartial = message.content[URLIndex:]
         URL = URLpartial.split(' ', 1)[0]
         print(URL)
-        SciHubURL = 'https://sci-hub.se/' + 'https://' + URL
+        SciHubURL = scihub + 'https://' + URL
         print(SciHubURL)
         await message.channel.send(SciHubURL)
     if 'sciencedirect.com/' in message.content:
@@ -35,9 +38,28 @@ async def on_message(message):
         URLpartial = message.content[URLIndex:]
         URL = URLpartial.split(' ', 1)[0]
         URL = 'https://www.' + URL
-        print(URL)
-        SciHubURL = 'https://sci-hub.se/' + URL
+        print(URL)  
+        SciHubURL = scihub + URL
         await message.channel.send(SciHubURL)
-        
+    if 'springer.com/' in message.content:
+        print("scientific article found!")
+        URLIndex = message.content.index('springer.com')
+        print(URLIndex)
+        URLpartial = message.content[URLIndex:]
+        URL = URLpartial.split(' ', 1)[0]
+        URL = 'https://www.' + URL
+        print(URL)  
+        SciHubURL = scihub + URL
+        await message.channel.send(SciHubURL)
+    if 'nature.com/' in message.content:
+        print("scientific article found!")
+        URLIndex = message.content.index('nature.com')
+        print(URLIndex)
+        URLpartial = message.content[URLIndex:]
+        URL = URLpartial.split(' ', 1)[0]
+        URL = 'https://www.' + URL
+        print(URL)  
+        SciHubURL = scihub + URL
+        await message.channel.send(SciHubURL)
         
 client.run('[INSERT API KEY HERE]')
