@@ -1,7 +1,11 @@
-#Sci-Hub Discord Bot V1.0
 import discord
 from urllib.parse import urlparse
 import urllib.request
+#import sys
+
+#sys.stdout = open("log.txt", "a")
+
+#ctx=context
 
 client = discord.Client()
 
@@ -15,7 +19,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    print(message.content)
+    #print(message.guild.name, message.channel.mention, message.author, message.content)
     if message.author == client.user:
         return
 
@@ -61,5 +65,25 @@ async def on_message(message):
         print(URL)  
         SciHubURL = scihub + URL
         await message.channel.send(SciHubURL)
-        
+    if 'onlinelibrary.wiley.com' in message.content:
+        print("scientific article found!")
+        URLIndex = message.content.index('onlinelibrary.wiley.com')
+        print(URLIndex)
+        URLpartial = message.content[URLIndex:]
+        URL = URLpartial.split(' ', 1)[0]
+        #URL = 'https://www.' + URL
+        print(URL)  
+        SciHubURL = scihub + URL
+        await message.channel.send(SciHubURL)
+    if 'doi.org' in message.content:
+        print("scientific article found!")
+        URLIndex = message.content.index('doi.org')
+        print(URLIndex)
+        URLpartial = message.content[URLIndex:]
+        URL = URLpartial.split(' ', 1)[0]
+        URL = 'https://' + URL
+        print(URL)  
+        SciHubURL = scihub + URL
+        await message.channel.send(SciHubURL)
+
 client.run('[INSERT API KEY HERE]')
