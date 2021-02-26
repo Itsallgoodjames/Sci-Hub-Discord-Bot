@@ -43,7 +43,7 @@ async def on_message(message):
         URL = URLpartial.split(' ', 1)[0]
         URL = 'https://www.' + URL
         print(URL)  
-        SciHubURL = scihub + URL
+        SciHubURL = 'https://sci-hub.se/' + URL
         await message.channel.send(SciHubURL)
     if 'springer.com/' in message.content:
         print("scientific article found!")
@@ -85,5 +85,5 @@ async def on_message(message):
         print(URL)  
         SciHubURL = scihub + URL
         await message.channel.send(SciHubURL)
-
+    
 client.run('[INSERT API KEY HERE]')
